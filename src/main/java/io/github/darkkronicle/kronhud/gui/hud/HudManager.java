@@ -1,5 +1,6 @@
 package io.github.darkkronicle.kronhud.gui.hud;
 
+import io.github.darkkronicle.kronhud.compat.replaymod.ReplayModCompat;
 import io.github.darkkronicle.kronhud.gui.AbstractHudEntry;
 import io.github.darkkronicle.kronhud.gui.screen.HudEditScreen;
 import io.github.darkkronicle.kronhud.util.Rectangle;
@@ -56,7 +57,8 @@ public class HudManager {
     }
 
     public void render(MatrixStack matrices) {
-        if (!(client.currentScreen instanceof HudEditScreen) && !client.options.debugEnabled) {
+        if (!(client.currentScreen instanceof HudEditScreen) && !client.options.debugEnabled
+                && !ReplayModCompat.isInReplay()) {
             for (AbstractHudEntry hud : getEntries()) {
                 if (hud.isEnabled()) {
                     hud.renderHud(matrices);
